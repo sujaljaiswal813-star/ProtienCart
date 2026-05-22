@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProteinCart — Fuel Your Fitness Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="custom-cursor-follower" id="cursor-follower"></div>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader-logo">Protein<span>Cart</span></div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+    <p class="loader-text">Fueling Your Journey...</p>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress"></div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">Protein<span>Cart</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#meals">Meals</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="search-wrap">
+          <input type="text" class="search-input" id="searchInput" placeholder="Search meals..." />
+          <button class="search-btn" id="searchBtn">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </button>
+        </div>
+        <button class="cart-btn" id="cartBtn">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="login-btn">Login</button>
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="hero-section">
+    <canvas id="particle-canvas"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge" data-aos="fade-down" data-aos-delay="200">🔥 Premium Fitness Nutrition</div>
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="300">
+        Fuel Your<br/><span class="gradient-text">Fitness Journey</span>
+      </h1>
+      <p class="hero-desc" data-aos="fade-up" data-aos-delay="450">
+        High-protein meals crafted by expert nutritionists. Delivered fresh to power your workouts and transform your body.
+      </p>
+      <div class="hero-cta" data-aos="fade-up" data-aos-delay="600">
+        <button class="btn-primary ripple" onclick="scrollTo('#meals')">
+          <span>Order Now</span>
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="btn-outline ripple" onclick="scrollTo('#categories')">
+          <span>Explore Meals</span>
+        </button>
+      </div>
+      <div class="hero-stats" data-aos="fade-up" data-aos-delay="750">
+        <div class="stat-item">
+          <span class="stat-num" data-target="500">0</span><span>+</span>
+          <p>Meals</p>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="50000">0</span><span>+</span>
+          <p>Customers</p>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="4">0</span><span>.9★</span>
+          <p>Rating</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-cards-float" data-aos="fade-left" data-aos-delay="400">
+      <div class="float-card fc1">
+        <div class="fc-img">🥩</div>
+        <div class="fc-info">
+          <p class="fc-name">Grilled Chicken Bowl</p>
+          <p class="fc-macro"><span class="green">48g</span> Protein · 520 kcal</p>
+          <p class="fc-price">₹349</p>
+        </div>
+      </div>
+      <div class="float-card fc2">
+        <div class="fc-img">🥗</div>
+        <div class="fc-info">
+          <p class="fc-name">Salmon Power Salad</p>
+          <p class="fc-macro"><span class="green">42g</span> Protein · 480 kcal</p>
+          <p class="fc-price">₹429</p>
+        </div>
+      </div>
+      <div class="float-card fc3">
+        <div class="fc-img">🥤</div>
+        <div class="fc-info">
+          <p class="fc-name">Whey Protein Shake</p>
+          <p class="fc-macro"><span class="green">35g</span> Protein · 280 kcal</p>
+          <p class="fc-price">₹199</p>
+        </div>
+      </div>
+      <div class="float-card fc4">
+        <div class="fc-img">🥚</div>
+        <div class="fc-info">
+          <p class="fc-name">Egg White Omelette</p>
+          <p class="fc-macro"><span class="green">30g</span> Protein · 320 kcal</p>
+          <p class="fc-price">₹279</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES SECTION -->
+  <section id="categories" class="section-pad">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Browse By Goal</span>
+        <h2 class="section-title">Protein <span class="gradient-text">Categories</span></h2>
+        <p class="section-desc">Find meals tailored to your specific fitness goals and dietary preferences.</p>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card" data-aos="fade-up" data-aos-delay="100" data-filter="high-protein">
+          <div class="cat-icon">🏋️</div>
+          <h3>High Protein Meals</h3>
+          <p>40g+ protein per serving</p>
+          <span class="cat-count">48 Meals</span>
+        </div>
+        <div class="cat-card" data-aos="fade-up" data-aos-delay="150" data-filter="weight-gain">
+          <div class="cat-icon">💪</div>
+          <h3>Weight Gain Meals</h3>
+          <p>Calorie-dense power meals</p>
+          <span class="cat-count">36 Meals</span>
+        </div>
+        <div class="cat-card" data-aos="fade-up" data-aos-delay="200" data-filter="weight-loss">
+          <div class="cat-icon">🔥</div>
+          <h3>Weight Loss Meals</h3>
+          <p>Low-cal, high satiety</p>
+          <span class="cat-count">42 Meals</span>
+        </div>
+        <div class="cat-card" data-aos="fade-up" data-aos-delay="250" data-filter="keto">
+          <div class="cat-icon">🥑</div>
+          <h3>Keto Foods</h3>
+          <p>Zero sugar, fat-fuelled</p>
+          <span class="cat-count">29 Meals</span>
+        </div>
+        <div class="cat-card" data-aos="fade-up" data-aos-delay="300" data-filter="vegan">
+          <div class="cat-icon">🌱</div>
+          <h3>Vegan Protein</h3>
+          <p>Plant-powered nutrition</p>
+          <span class="cat-count">33 Meals</span>
+        </div>
+        <div class="cat-card" data-aos="fade-up" data-aos-delay="350" data-filter="shakes">
+          <div class="cat-icon">🥤</div>
+          <h3>Protein Shakes</h3>
+          <p>Blend & fuel instantly</p>
+          <span class="cat-count">22 Meals</span>
+        </div>
+        <div class="cat-card" data-aos="fade-up" data-aos-delay="400" data-filter="supplements">
+          <div class="cat-icon">💊</div>
+          <h3>Supplements</h3>
+          <p>Vitamins, BCAAs & more</p>
+          <span class="cat-count">55 Items</span>
+        </div>
+        <div class="cat-card" data-aos="fade-up" data-aos-delay="450" data-filter="workout">
+          <div class="cat-icon">⚡</div>
+          <h3>Pre/Post Workout</h3>
+          <p>Timing-optimised meals</p>
+          <span class="cat-count">31 Meals</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED MEALS -->
+  <section id="meals" class="section-pad">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Trending Now</span>
+        <h2 class="section-title">Featured <span class="gradient-text">Meals</span></h2>
+        <p class="section-desc">Chef-crafted, nutritionist-approved meals loved by thousands of fitness enthusiasts.</p>
+      </div>
+      <!-- Filter Bar -->
+      <div class="filter-bar" data-aos="fade-up" data-aos-delay="100">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="high-protein">High Protein</button>
+        <button class="filter-btn" data-filter="weight-loss">Weight Loss</button>
+        <button class="filter-btn" data-filter="vegan">Vegan</button>
+        <button class="filter-btn" data-filter="keto">Keto</button>
+        <button class="filter-btn" data-filter="workout">Workout</button>
+      </div>
+      <div class="meals-grid" id="mealsGrid">
+        <!-- Meal Cards injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- NUTRITION TRACKER -->
+  <section id="tracker" class="section-pad">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Track & Improve</span>
+        <h2 class="section-title">Nutrition <span class="gradient-text">Tracker</span></h2>
+      </div>
+      <div class="tracker-grid">
+        <div class="tracker-card" data-aos="fade-right" data-aos-delay="100">
+          <h3 class="tracker-label">Daily Dashboard</h3>
+          <div class="tracker-row">
+            <label>Protein Intake</label>
+            <span id="proteinVal">0g / 150g</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill green-fill" id="proteinBar" style="width:0%"></div></div>
+          <div class="tracker-row mt-4">
+            <label>Calories</label>
+            <span id="calVal">0 / 2500 kcal</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill orange-fill" id="calBar" style="width:0%"></div></div>
+          <div class="tracker-row mt-4">
+            <label>Water Intake</label>
+            <span id="waterVal">0 / 3.5 L</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill blue-fill" id="waterBar" style="width:0%"></div></div>
+          <div class="tracker-btns">
+            <button class="track-btn" onclick="updateTracker('protein',10)">+10g Protein</button>
+            <button class="track-btn orange-btn" onclick="updateTracker('cal',200)">+200 kcal</button>
+            <button class="track-btn blue-btn" onclick="updateTracker('water',0.25)">+250ml Water</button>
+            <button class="track-btn reset-btn" onclick="resetTracker()">Reset</button>
+          </div>
+        </div>
+        <div class="tracker-card bmi-card" data-aos="fade-left" data-aos-delay="200">
+          <h3 class="tracker-label">BMI Calculator</h3>
+          <div class="bmi-inputs">
+            <div class="bmi-field">
+              <label>Height (cm)</label>
+              <input type="number" id="heightInput" placeholder="175" class="bmi-input" />
+            </div>
+            <div class="bmi-field">
+              <label>Weight (kg)</label>
+              <input type="number" id="weightInput" placeholder="70" class="bmi-input" />
+            </div>
+            <div class="bmi-field">
+              <label>Age</label>
+              <input type="number" id="ageInput" placeholder="25" class="bmi-input" />
+            </div>
+          </div>
+          <button class="btn-primary w-full mt-4" onclick="calcBMI()">Calculate BMI</button>
+          <div class="bmi-result" id="bmiResult" style="display:none">
+            <div class="bmi-circle">
+              <span id="bmiValue">--</span>
+              <small>BMI</small>
+            </div>
+            <div class="bmi-label" id="bmiLabel">--</div>
+            <div class="bmi-scale">
+              <div class="scale-bar">
+                <div class="scale-indicator" id="bmiIndicator"></div>
+              </div>
+              <div class="scale-labels">
+                <span>Underweight</span><span>Normal</span><span>Overweight</span><span>Obese</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tracker-card circ-card" data-aos="fade-up" data-aos-delay="150">
+          <h3 class="tracker-label">Today's Goals</h3>
+          <div class="circles-wrap">
+            <div class="circ-item">
+              <svg class="circ-svg" viewBox="0 0 100 100">
+                <circle class="circ-bg" cx="50" cy="50" r="40"/>
+                <circle class="circ-prog green-stroke" cx="50" cy="50" r="40" id="circProtein" stroke-dasharray="0 251"/>
+              </svg>
+              <div class="circ-center"><span id="circProteinPct">0%</span><small>Protein</small></div>
+            </div>
+            <div class="circ-item">
+              <svg class="circ-svg" viewBox="0 0 100 100">
+                <circle class="circ-bg" cx="50" cy="50" r="40"/>
+                <circle class="circ-prog orange-stroke" cx="50" cy="50" r="40" id="circCal" stroke-dasharray="0 251"/>
+              </svg>
+              <div class="circ-center"><span id="circCalPct">0%</span><small>Calories</small></div>
+            </div>
+            <div class="circ-item">
+              <svg class="circ-svg" viewBox="0 0 100 100">
+                <circle class="circ-bg" cx="50" cy="50" r="40"/>
+                <circle class="circ-prog blue-stroke" cx="50" cy="50" r="40" id="circWater" stroke-dasharray="0 251"/>
+              </svg>
+              <div class="circ-center"><span id="circWaterPct">0%</span><small>Water</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY PROTEINCART -->
+  <section id="about" class="section-pad why-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Our Edge</span>
+        <h2 class="section-title">Why Choose <span class="gradient-text">ProteinCart?</span></h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="why-icon">🚀</div>
+          <h3>Fast Delivery</h3>
+          <p>Fresh meals delivered to your door in under 45 minutes. Always on time.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="why-icon">🥗</div>
+          <h3>Healthy Meals</h3>
+          <p>Every meal is macro-tracked, calorie counted, and nutritionist approved.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="why-icon">🧠</div>
+          <h3>Expert Nutrition</h3>
+          <p>Backed by certified sports nutritionists and elite fitness coaches.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="why-icon">💰</div>
+          <h3>Affordable Plans</h3>
+          <p>Premium nutrition doesn't have to break the bank. Plans from ₹199/meal.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="why-icon">🏟️</div>
+          <h3>Gym Friendly</h3>
+          <p>Pre & post-workout optimised meals timed to maximise your gains.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="350">
+          <div class="why-icon">📱</div>
+          <h3>Easy Ordering</h3>
+          <p>Order with one tap, track in real-time, and manage your diet effortlessly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIET PLANNER -->
+  <section id="planner" class="section-pad">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Personalise</span>
+        <h2 class="section-title">Build Your <span class="gradient-text">Diet Plan</span></h2>
+        <p class="section-desc">Tell us your goals and we'll calculate your ideal daily nutrition targets.</p>
+      </div>
+      <div class="planner-wrap" data-aos="fade-up" data-aos-delay="100">
+        <div class="planner-form">
+          <div class="planner-field">
+            <label>Fitness Goal</label>
+            <select id="planGoal" class="planner-select" onchange="calcPlan()">
+              <option value="lose">Lose Weight</option>
+              <option value="maintain">Maintain Weight</option>
+              <option value="gain">Gain Muscle</option>
+            </select>
+          </div>
+          <div class="planner-field">
+            <label>Meal Type</label>
+            <select id="planMeal" class="planner-select" onchange="calcPlan()">
+              <option value="veg">Vegetarian</option>
+              <option value="nonveg">Non-Vegetarian</option>
+              <option value="vegan">Vegan</option>
+            </select>
+          </div>
+          <div class="planner-field">
+            <label>Activity Level</label>
+            <select id="planActivity" class="planner-select" onchange="calcPlan()">
+              <option value="1.2">Sedentary</option>
+              <option value="1.375">Lightly Active</option>
+              <option value="1.55" selected>Moderately Active</option>
+              <option value="1.725">Very Active</option>
+              <option value="1.9">Athlete</option>
+            </select>
+          </div>
+          <div class="planner-field">
+            <label>Body Weight: <span id="weightLabel">70</span> kg</label>
+            <input type="range" min="40" max="150" value="70" id="planWeight" class="planner-slider" oninput="calcPlan()" />
+          </div>
+          <div class="planner-field">
+            <label>Height: <span id="heightLabel">175</span> cm</label>
+            <input type="range" min="140" max="220" value="175" id="planHeight" class="planner-slider" oninput="calcPlan()" />
+          </div>
+        </div>
+        <div class="planner-results" id="planResults">
+          <div class="plan-result-card">
+            <div class="pr-circle green"><span id="prProtein">150</span><small>g Protein</small></div>
+            <div class="pr-circle orange"><span id="prCal">2200</span><small>kcal</small></div>
+            <div class="pr-circle blue"><span id="prCarbs">240</span><small>g Carbs</small></div>
+            <div class="pr-circle purple"><span id="prFat">65</span><small>g Fat</small></div>
+          </div>
+          <div class="plan-meals">
+            <h4>Recommended Meals:</h4>
+            <ul id="planMealList"></ul>
+          </div>
+          <button class="btn-primary w-full mt-4" onclick="showToast('Diet plan saved! 🎉')">Save My Plan</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="section-pad">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Visual Feast</span>
+        <h2 class="section-title">Food <span class="gradient-text">Gallery</span></h2>
+      </div>
+      <div class="gallery-grid" data-aos="fade-up" data-aos-delay="100">
+        <div class="gallery-item gi-1"><div class="gi-overlay"><span>Grilled Chicken Bowl</span></div><div class="gi-emoji">🥩</div></div>
+        <div class="gallery-item gi-2"><div class="gi-overlay"><span>Power Salad</span></div><div class="gi-emoji">🥗</div></div>
+        <div class="gallery-item gi-3"><div class="gi-overlay"><span>Protein Shake</span></div><div class="gi-emoji">🥤</div></div>
+        <div class="gallery-item gi-4"><div class="gi-overlay"><span>Egg Omelette</span></div><div class="gi-emoji">🥚</div></div>
+        <div class="gallery-item gi-5"><div class="gi-overlay"><span>Salmon Steak</span></div><div class="gi-emoji">🍣</div></div>
+        <div class="gallery-item gi-6"><div class="gi-overlay"><span>Quinoa Bowl</span></div><div class="gi-emoji">🍲</div></div>
+        <div class="gallery-item gi-7"><div class="gi-overlay"><span>Greek Yogurt</span></div><div class="gi-emoji">🫙</div></div>
+        <div class="gallery-item gi-8"><div class="gi-overlay"><span>Avocado Toast</span></div><div class="gi-emoji">🥑</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="section-pad">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Real People, Real Results</span>
+        <h2 class="section-title">What Our <span class="gradient-text">Champions</span> Say</h2>
+      </div>
+      <div class="testi-slider" data-aos="fade-up" data-aos-delay="100">
+        <div class="testi-track" id="testiTrack">
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p>"ProteinCart transformed my fitness journey. Lost 12kg in 3 months while building lean muscle. The meals are actually delicious!"</p>
+            <div class="testi-author"><div class="testi-avatar">RS</div><div><strong>Rahul Sharma</strong><small>Bodybuilder, Delhi</small></div></div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p>"As a busy professional, meal prep was impossible. ProteinCart saves me hours while keeping me on track with my macros every single day."</p>
+            <div class="testi-author"><div class="testi-avatar">PK</div><div><strong>Priya Kapoor</strong><small>Software Engineer, Bangalore</small></div></div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p>"Gained 8kg of pure muscle in 4 months. The weight gain meals are incredible — calorie-dense but still clean and nutritious."</p>
+            <div class="testi-author"><div class="testi-avatar">AV</div><div><strong>Arjun Verma</strong><small>Athlete, Mumbai</small></div></div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p>"Vegan protein options are amazing! Never thought plant-based meals could pack this much protein. My performance has skyrocketed."</p>
+            <div class="testi-author"><div class="testi-avatar">SM</div><div><strong>Sneha Mishra</strong><small>Yoga Instructor, Pune</small></div></div>
+          </div>
+          <div class="testi-card">
+            <div class="testi-stars">★★★★★</div>
+            <p>"The BMI tracker and nutrition dashboard are game-changers. I can see my progress in real-time and adjust my meals accordingly."</p>
+            <div class="testi-author"><div class="testi-avatar">VN</div><div><strong>Vikram Nair</strong><small>CrossFit Coach, Chennai</small></div></div>
+          </div>
+        </div>
+        <div class="testi-controls">
+          <button class="testi-btn" id="testiPrev">‹</button>
+          <div class="testi-dots" id="testiDots"></div>
+          <button class="testi-btn" id="testiNext">›</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section-pad">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title">Contact <span class="gradient-text">Us</span></h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-form-wrap" data-aos="fade-right" data-aos-delay="100">
+          <div class="contact-form">
+            <div class="form-group">
+              <input type="text" placeholder="Your Name" class="form-input" />
+              <label>Your Name</label>
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Email Address" class="form-input" />
+              <label>Email Address</label>
+            </div>
+            <div class="form-group">
+              <input type="tel" placeholder="Phone Number" class="form-input" />
+              <label>Phone Number</label>
+            </div>
+            <div class="form-group">
+              <textarea placeholder="Your Message" rows="4" class="form-input form-textarea"></textarea>
+              <label>Your Message</label>
+            </div>
+            <button class="btn-primary w-full ripple" onclick="showToast('Message sent! We will reply within 24 hours. 📧')">Send Message</button>
+          </div>
+        </div>
+        <div class="contact-info" data-aos="fade-left" data-aos-delay="200">
+          <div class="contact-detail">
+            <div class="cd-icon">📍</div>
+            <div><h4>Address</h4><p>Fitness Hub, MG Road, Indore, MP 452001</p></div>
+          </div>
+          <div class="contact-detail">
+            <div class="cd-icon">📞</div>
+            <div><h4>Phone</h4><p>+91 98765 43210</p></div>
+          </div>
+          <div class="contact-detail">
+            <div class="cd-icon">📧</div>
+            <div><h4>Email</h4><p>support@proteincart.in</p></div>
+          </div>
+          <div class="contact-detail">
+            <div class="cd-icon">⏰</div>
+            <div><h4>Hours</h4><p>Mon–Sun: 6:00 AM – 11:00 PM</p></div>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-icon">𝕏</a>
+            <a href="#" class="social-icon">in</a>
+            <a href="#" class="social-icon">ig</a>
+            <a href="#" class="social-icon">yt</a>
+          </div>
+          <div class="map-placeholder">
+            <span>📍 Indore, Madhya Pradesh</span>
+            <p>View on Google Maps</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">Protein<span>Cart</span></div>
+          <p>Fueling India's fitness revolution with premium high-protein meals delivered fresh to your door.</p>
+          <div class="social-links mt-4">
+            <a href="#" class="social-icon">𝕏</a>
+            <a href="#" class="social-icon">in</a>
+            <a href="#" class="social-icon">ig</a>
+            <a href="#" class="social-icon">yt</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#meals">Meals</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#tracker">Tracker</a></li>
+            <li><a href="#planner">Diet Planner</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#">High Protein</a></li>
+            <li><a href="#">Keto Foods</a></li>
+            <li><a href="#">Vegan Protein</a></li>
+            <li><a href="#">Supplements</a></li>
+            <li><a href="#">Pre-Workout</a></li>
+          </ul>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Get weekly meal plans, nutrition tips & exclusive deals.</p>
+          <div class="newsletter-form">
+            <input type="email" placeholder="Enter your email" class="newsletter-input" />
+            <button class="newsletter-btn ripple" onclick="showToast('Subscribed! 🎉')">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 ProteinCart. Built with 💪 for fitness enthusiasts across India.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Cart 🛒</h3>
+      <button onclick="toggleCart()" class="cart-close">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <div class="cart-empty-icon">🛒</div>
+        <p>Your cart is empty</p>
+        <small>Add some fuel for your journey!</small>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">₹0</span>
+      </div>
+      <button class="btn-primary w-full ripple" onclick="showToast('Order placed! 🎉 Estimated delivery: 35 mins')">Checkout</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
